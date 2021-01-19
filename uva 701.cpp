@@ -38,25 +38,52 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //int dy[]={0,1,0,-1};
 //char board[26][26];
 ll n,m,q,r;
+vpi dp;
+
+bool digits(ll a,ll b)
+{
+    if(a<=b)return false;
+    vi ar;
+    vi br;
+    while(a!=0)
+    {
+        ar.pb(a%10);
+        a/=10;
+    }
+    while(b!=0)
+    {
+        br.pb(b%10);
+        b/=10;
+    }
+    int i=ar.size()-1;
+    int j=br.size()-1;
+    while(i>=0 and j>=0)
+    {
+        if(ar[i--]!=br[j--])return false;
+    }
+    if( (i+1) <= br.size() )return false;
+    return true;
+}
 
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+    char s[20];
+    double a,left,right;int len;
+    while(scanf("%s",s)!=EOF)
     {
-        if(q==0)
+        len=strlen(s)+1;
+        a=atof(s);
+        while(1)
         {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
+            left=log(a)/log(2)+len*log(10)/log(2);
+            right=log(a+1)/log(2)+len*log(10)/log(2);
+            if((int)left<(int)right)
+            break;
+            len++;
         }
-        else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
+        int ans=ceil(left);
+        printf("%d\n",ans);
     }
-    
 }
 
 

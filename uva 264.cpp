@@ -37,26 +37,37 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //int dx[]={-1,0,1,0};
 //int dy[]={0,1,0,-1};
 //char board[26][26];
-ll n,m,q,r;
+ll n,m,q;
+pi dp[10000005];
+
+void init()
+{
+    dp[1]={1,1};
+    int j=2;
+    int x,y,t=3;
+    while(j<10000005)
+    {
+        if(t%2==0){x=1;y=t-1;}
+        else {x=t-1;y=1;}
+        for(int k=1;k<t;k++)
+        {
+            if(j>=10000005)break;
+            dp[j++]={x,y};
+            if(t%2==0){x++;y--;}
+            else {x--;y++;}
+        }
+        t++;
+    }
+}
 
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+    while(cin>>n)
     {
-        if(q==0)
-        {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
-        }
-        else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
+        int x=dp[n].second , y=dp[n].first , tmp = n;
+        //cout<<x<<" "<<y<<endl;
+        printf("TERM %d IS %d/%d\n",tmp,x,y);
     }
-    
 }
 
 
@@ -73,6 +84,7 @@ int main()
     int k=1;
     //cin>>k;
     //int counter=1;
+    init();
     while(k--)
     {
         //printf("Case %d: ",counter++);

@@ -39,24 +39,23 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //char board[26][26];
 ll n,m,q,r;
 
+
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+
+    while(cin>>n and n!=0)
     {
-        if(q==0)
+        m=__builtin_popcount(n);
+        string s="";
+        while(n!=0)
         {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
+            char tmp=n%2 +'0';
+            s= tmp + s;
+            n/=2;
         }
-        else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
+        //cout<<s<<endl;
+        printf("The parity of ");cout<<s;printf(" is %d (mod 2).\n",(int)m);
     }
-    
 }
 
 

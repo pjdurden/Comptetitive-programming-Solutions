@@ -38,25 +38,27 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //int dy[]={0,1,0,-1};
 //char board[26][26];
 ll n,m,q,r;
+vi dp; 
+
+void init()
+{
+    dp.resize(1505,1);
+    int i2=1,i3=1,i5=1;
+    for(int j=2;j<1505;j++)
+    {
+        dp[j]=min( dp[i2]*2,min( dp[i3]*3, dp[i5]*5 ) );
+        if(dp[j]==(dp[i2]*2))i2++;
+        if(dp[j]==(dp[i3]*3))i3++;
+        if(dp[j]==(dp[i5]*5))i5++;
+    }
+}
 
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
-    {
-        if(q==0)
-        {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
-        }
-        else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
-    }
-    
+    /*
+    printf("The 1500'th ugly number is %d.",dp[1500]);
+    */
+    printf("The 1500'th ugly number is 859963392.");
 }
 
 
@@ -73,6 +75,7 @@ int main()
     int k=1;
     //cin>>k;
     //int counter=1;
+    //init();
     while(k--)
     {
         //printf("Case %d: ",counter++);

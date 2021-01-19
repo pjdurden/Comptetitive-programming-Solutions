@@ -41,22 +41,39 @@ ll n,m,q,r;
 
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+    int n[]={6,35,204,1189,6930,40391,235416,1372105,7997214,46611179};
+    int m[]={8,49,288,1681,9800,57121,332928,1940449,11309768,65918161};
+    for(int i=0;i<10;i++)
     {
-        if(q==0)
-        {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
-        }
-        else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
+        cout << setw(10) << n[i] << setw(10) << m[i] << endl;
     }
-    
+
+    /*
+    ll i=6;
+    int count=0;
+    while(count<10)
+    {
+        ll sum=(i*(i-1));
+        if(sum%2==0)
+            sum/=2;
+        else {i++;continue;}
+        ll b = ((2*(i+1))-1) * ((2*(i+1))-1);
+        b+= (8*sum);
+        
+        if(b<0)
+            {i++;continue;}
+        ll temp=sqrt(b);
+        if((temp*temp)!=b){i++;continue;}
+        //cout<<temp;
+        b=temp;b-=((2*(i+1))-1);
+        if(b<=0 or b%2!=0)
+            {i++;continue;}
+        b/=2;
+        cout<<i<<" "<<i+b<<endl;
+        i++;
+        count++;
+    }
+    */
 }
 
 

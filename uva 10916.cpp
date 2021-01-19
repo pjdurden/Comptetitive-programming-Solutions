@@ -41,22 +41,20 @@ ll n,m,q,r;
 
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+    while(cin>>n and n!=0)
     {
-        if(q==0)
+        m=(n-1940)/10;
+        double a=1<<m;
+        //cout<<m<<endl;
+        int i=1;
+        double sum=0;
+        while(sum<a)
         {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
+            sum+=(log((double)i)/log(2));
+            i++;
         }
-        else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
+        cout<<i-2<<endl;
     }
-    
 }
 
 

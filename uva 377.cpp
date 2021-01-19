@@ -39,24 +39,40 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //char board[26][26];
 ll n,m,q,r;
 
+
+int str(string a)
+{
+    int num=0;
+    for(int i=0;i<a.length();i++)
+    {
+        num*=4;
+        if(a[i]=='U')num++;
+        else if(a[i]=='C')num+=2;
+        else if(a[i]=='D')num+=3;
+    }
+    return num;
+}
+
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+    string a,b,c;
+    cin>>a>>b;
+    char op[3];
+    for(int i=0;i<3;i++)cin>>op[i];
+    cin>>c;
+    int num1=str(a);    
+    int num2=str(b);
+    for(int i=0;i<3;i++)
     {
-        if(q==0)
-        {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
-        }
-        else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
+        if(op[i]=='A')
+            num2+=num1;
+        else if(op[i]=='R')
+            num2=num2>>2;
+        else num2=num2<<2;
     }
-    
+    int cs=str(c);
+    if(cs==num2)cout<<"YES";
+    else cout<<"NO";
 }
 
 
@@ -71,12 +87,15 @@ int main()
     #endif
 
     int k=1;
-    //cin>>k;
+    cin>>k;
     //int counter=1;
+    printf("COWCULATIONS OUTPUT\n");
     while(k--)
     {
         //printf("Case %d: ",counter++);
         solve();
+        cout<<endl;
     }
+    printf("END OF OUTPUT\n");
     return 0;
 }

@@ -39,24 +39,56 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //char board[26][26];
 ll n,m,q,r;
 
+
+int str(string a)
+{
+    int num=0;
+    for(int i=0;i<a.length();i++)
+    {
+        num*=4;
+        if(a[i]=='U')num++;
+        else if(a[i]=='C')num+=2;
+        else if(a[i]=='D')num+=3;
+    }
+    return num;
+}
+
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+    char a;
+    while(true)
     {
-        if(q==0)
+        string num;
+        string res="";
+        bool flag;
+        while(cin>>num and num!="#" and num!="~")
         {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
+            int count=num.length(); 
+            if(count==1)flag=1;
+            else if(count==2)flag=0;
+            else if(count!=0)
+            {
+                count-=2;
+                while(count!=0)
+                {
+                    res+=(flag+'0');
+                    count--;
+                }
+            }
+            count=0;
         }
-        else
+        if(num=="~")return;
+        int resnum=0;
+        int j=res.size()-1;
+        int pow=1;
+        while(j>=0)
         {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
+            resnum+=(res[j]-'0')*pow;
+            j--;
+            pow*=2;
         }
-        cout<<endl;
+        cout<<resnum<<endl;
     }
-    
 }
 
 

@@ -38,25 +38,36 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //int dy[]={0,1,0,-1};
 //char board[26][26];
 ll n,m,q,r;
+vi dp;
+void init()
+{
+    dp.resize(5852,1);
+    int i2=1,i3=1,i5=1,i7=1;
+    for(int j=2;j<5849;j++)
+    {
+        dp[j]=min( dp[i2]*2,min( dp[i3]*3,min( dp[i5]*5,dp[i7]*7 ) ) );
+        if(dp[j]==(dp[i2]*2))i2++;
+        if(dp[j]==(dp[i3]*3))i3++;
+        if(dp[j]==(dp[i5]*5))i5++;
+        if(dp[j]==(dp[i7]*7))i7++;
+    }
+}
 
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+    while(cin>>n and n!=0)
     {
-        if(q==0)
-        {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
-        }
+        printf("The %d", n);
+        if(n%10 == 1 && n%100 != 11)
+            printf("st");
+        else if(n%10 == 2 && n%100 != 12)
+            printf("nd");
+        else if(n%10 == 3 && n%100 != 13)
+            printf("rd");
         else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
+            printf("th");
+        printf(" humble number is %d.\n", dp[n]);
     }
-    
 }
 
 
@@ -73,6 +84,7 @@ int main()
     int k=1;
     //cin>>k;
     //int counter=1;
+    init();
     while(k--)
     {
         //printf("Case %d: ",counter++);

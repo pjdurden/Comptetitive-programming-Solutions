@@ -39,24 +39,53 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //char board[26][26];
 ll n,m,q,r;
 
+ll digitsum(ll a)
+{
+    ll sum=0;
+    while(a>0)
+    {
+        sum+=a%10;
+        a/=10;
+    }
+    return sum;
+}
+
+bool sumprime(ll n)
+{
+    ll a=n;    ll sum=0;
+    bool flag=0;
+    for(ll i=2;i*i<=a;i++)
+    {
+        ll cnt=0;
+        while(a%i==0)
+        {
+            a/=i;
+            cnt++;
+        }
+        if(cnt>0)
+        {
+            sum+=(digitsum(i)*cnt);
+            flag=1;
+        }
+    }
+    if(a!=1)
+        sum+=digitsum(a);
+    return sum==digitsum(n) and flag;
+}
+
+
 void solve()
 {
-    while( cin>>n>>m>>q and !(n==0 and m==0 and q==0))
+    cin>>n;
+    while(true)
     {
-        if(q==0)
+        n++;
+        if(sumprime(n))
         {
-            ll temp=((n-7) * (m-7));
-                cout<<temp/2;
-            //cout<<res(n,m-1)+res(n-1,m);
+            cout<<n<<endl;
+            break;
         }
-        else
-        {
-            ll temp=((n-7) * (m-7))+1;
-            cout<<temp/2;
-        }
-        cout<<endl;
     }
-    
 }
 
 
@@ -71,7 +100,7 @@ int main()
     #endif
 
     int k=1;
-    //cin>>k;
+    cin>>k;
     //int counter=1;
     while(k--)
     {
