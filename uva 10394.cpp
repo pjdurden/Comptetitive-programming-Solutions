@@ -41,20 +41,46 @@ double cordist(pair<double,double> a,pair<double,double> b)
 ll n,m,q,r;
 bool dp[20000004];
 
+void sieve()
+{
+    memset(dp,true,sizeof dp);
+    dp[0]=dp[1]=false;
+    for(int i=2;i<20000004;i++)
+    {
+        if(dp[i])
+        {
+            for(int j=2*i;j<20000004;j+=i)
+                dp[j]=false;
+        }
+    }
+}
+int input[100020];
+
+void init()
+{
+    memset(input,-1,sizeof input);
+    int count=1;
+    for(int i=2;i<20000001;i++)
+    {
+        if(count>100000)break;
+        if(dp[i] and dp[i+2])
+        {
+            //cout<<i<<endl;
+            input[count]=i;
+            count++;
+        }
+    }
+
+}
+
 void solve()
 {
+    sieve();
+    init();
     //cout<<123<<endl;
-    while( cin>>n and n!=0 )
+    while( cin>>n )
     {
-        vi ar;
-        ar.pb(n);
-        while(cin>>m and m!=0)
-            ar.pb(m);
-        int res=abs(ar[1]-ar[0]);
-        for(int i=2;i<ar.size();i++)
-            res=gcd(res,abs(ar[i]-ar[i-1]));
-        cout<<res<<endl;
-        
+        printf("(%d, %d)\n",input[n],input[n]+2);
     }
 
 }

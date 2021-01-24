@@ -39,22 +39,36 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //int dy[]={0,1,0,-1};
 //char board[26][26];
 ll n,m,q,r;
-bool dp[20000004];
+bool dp[1000010];
+
+void init()
+{
+    memset(dp,true,sizeof dp);
+    dp[0]=dp[1]=false;
+    for(int i=2;i<1000010;i++)
+    {
+        if(dp[i])
+        {
+            for(int j=2*i;j<1000010;j+=i)
+                dp[j]=false;
+        }
+    }
+}
 
 void solve()
 {
-    //cout<<123<<endl;
-    while( cin>>n and n!=0 )
+    init();
+    while(cin>>n and n!=0)
     {
-        vi ar;
-        ar.pb(n);
-        while(cin>>m and m!=0)
-            ar.pb(m);
-        int res=abs(ar[1]-ar[0]);
-        for(int i=2;i<ar.size();i++)
-            res=gcd(res,abs(ar[i]-ar[i-1]));
-        cout<<res<<endl;
-        
+        for(int i=2;i<1000010;i++)
+        {
+            if(dp[i] and dp[n-i])
+            {
+                printf("%lld = %d + %d\n",n,i,n-i);
+                break;
+            }
+        }
+
     }
 
 }
