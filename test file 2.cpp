@@ -44,13 +44,46 @@ ll n,m,q,r;
 
 void solve()
 {
-    cin>>n>>m;
-    if( m%n==0  or m<=n )
+    cin>>n>>m>>q;
+    string s;
+    cin>>s;
+    ll arr[s.length()];
+    memset(arr,0,sizeof arr);
+    int j=0;
+    for(int i=s.length()-2;i>=0;i--)
     {
-        cout<<"Yes\n";
+        if(i==s.length()-2)
+        {
+            if(s[i]=='A')
+                arr[i]=n;
+            else arr[i]=m;
+        }
+        else
+        {
+            if(s[i]==s[i+1])
+            {
+                arr[i]=arr[i+1];
+            }
+            else
+            {
+                if(s[i]=='A')
+                    arr[i]=n+arr[i+1];
+                else arr[i]=m+arr[i+1];       
+            }
+        }
     }
-    else cout<<"No\n";
-
+    int res=-1;
+    for(int i=0;i<s.length();i++)
+    {
+        if(arr[i]<=q)
+        {
+            res=i;
+            break;
+        }
+    }
+    if(res==-1)
+        cout<<s.length()<<endl;
+    else cout<<res+1<<endl;
 }
  
  
@@ -65,6 +98,7 @@ int main()
     #endif
     int k=1;
     cin>>k;
+    
     //int counter=1;
     while(k--)
     {
