@@ -39,8 +39,9 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //char board[26][26];
 int n,m,q,r;
 
-void solve()
+void solveqsrr()
 {
+    int n,m,q,r;
     while(cin>>n and n>0)
     {
         int l,r;
