@@ -18,12 +18,9 @@ typedef long long ll;
 typedef unsigned long long ull;
 const int mod=1e9+7;
 #define eps 1e-7
-#define all(x) x.begin(), x.end()
-#define rall(x) x.rbegin(), x.rend()
-#define sortall(x) sort(all(x))
-#define vpi vector<pi>
+#define vpi vector<pair<int,int>>
 #define vi vector<ll>
-#define pi pair<ll,ll>
+#define pi pair<int,int>
 #define pb push_back
 #define ppb pop_back
 #define umap unordered_map
@@ -40,9 +37,9 @@ ll lcm(ll x,ll y){return x*(y/gcd(x,y)); }
 ll modd(ll a){return (a%mod + mod)%mod;}
 ll add(ll a,ll b){return modd(modd(a)+modd(b));}
 ll mul(ll a,ll b){return modd(modd(a)*modd(b));}
-int smask(int i,int pos){ return (i|(1<<pos)); }
-int clmask(int i,int pos){return (i&(~(1<<pos))) ; }
-bool chmask(int i,int pos){return (i&(1<<pos))!=0 ;}
+void smask(int pos,int &i){ i=i^(1<<pos); }
+void clmask(int pos,int &i){ i=i&~(1<<pos); }
+bool chmask(int pos,int i){return i&(1<<pos);}
 double cordist(pair<double,double> a,pair<double,double> b)
 {return sqrt(((a.first-b.first)*(a.first-b.first))+((a.second-b.second)*(a.second-b.second)));}
 
@@ -52,44 +49,19 @@ double cordist(pair<double,double> a,pair<double,double> b)
 //im,q,r;nt price[30]; 
 //char board[26][26];
 ll n,m,q,r;
-vi arr;
-int cost(string s)
-{
-    int cnt=0;
-    for(int i=0;i<10;i++)
-    {
-        for(int j=i+1;j<9;j++)
-        {
-            if(s[i]==s[j] and s[i+1]==s[j+1])
-                cnt++;
-        }
-    }
-    return cnt;
-}
 
 void solve()    
 {  
-    string s;
-    cin>>s;
-    cout<<cost(s)<<endl;
-    for(int i=0;i<10;i++)
+    srand(time(0));
+    for(int i=0;i<100;i++)
     {
-        for(int j=0;j<=i;j++)
-        {
-            if(j==0)
-                cout<<"1";
-            else 
-                cout<<"0";
-        }
-        cout<<",";
+        int x=rand()%1000;
+        int y=rand()%1000;
+        int c=rand()%26;
+        cout<<x<<" "<<y<<" "<<char(c+'A')<<endl;
     }
-    cout<<endl;
-
+    
 }
-
- 
- 
- 
  
 int main()  
 {
@@ -102,6 +74,7 @@ int main()
     freopen("output.out", "w", stdout);
     #endif
     int k=1;
+
     //cin>>k;
     //sieve();
     //int counter=1;
